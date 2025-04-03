@@ -43,7 +43,7 @@ export const fetchWeather = createAsyncThunk("weather/fetch", async () => {
 
     const response = await Promise.all(
         cities.map(async (city) => {
-            const res = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}`);
+            const res = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}`)
             return res.json()
         })
     )
@@ -67,8 +67,8 @@ const weatherSlice = createSlice({
             .addCase(fetchWeather.rejected, (state, action) => {
                 state.status = "failed"
                 state.error = action.error.message ?? "Something went wrong"
-            });
+            })
     },
-});
+})
 
-export default weatherSlice.reducer;
+export default weatherSlice.reducer

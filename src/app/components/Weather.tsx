@@ -4,6 +4,7 @@ import { RootState } from "@/store/store"
 import { useSelector } from "react-redux"
 import { Cloud, Sun, CloudRain, Snowflake, Wind } from "lucide-react";
 import Spinner from "./Spinner";
+import Link from "next/link";
 
 export default function Weather() {
     const { data, status } = useSelector((state: RootState) => state.weather)
@@ -40,15 +41,17 @@ export default function Weather() {
             }
             {status === "failed" && <p className="text-red-500">Failed to load data</p>}
             {data && data.map((city) => (
-                <div key={city.id} className="mb-4 flex items-center gap-4">
-                    {getWeatherIcon(city.weather?.[0]?.main)}
-                    <div>
-                        <p className="text-lg font-semibold">{city.name}</p>
-                        <p className="text-sm text-gray-300">
-                            {city.main.temp}°C | Humidity: {city.main.humidity}% | Wind: {city.wind.speed} km/h
-                        </p>
+                <Link key={city.id} href={`/weather/${encodeURIComponent(city.name)}`}>
+                    <div className="mb-4 flex items-center gap-4">
+                        {getWeatherIcon(city.weather?.[0]?.main)}
+                        <div>
+                            <p className="text-lg font-semibold">{city.name}</p>
+                            <p className="text-sm text-gray-300">
+                                {city.main.temp}°C | Humidity: {city.main.humidity}% | Wind: {city.wind.speed} km/h
+                            </p>
+                        </div>
                     </div>
-                </div>
+                </Link>
             ))}
         </div>
     )
