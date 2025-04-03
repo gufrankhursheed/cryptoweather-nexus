@@ -1,13 +1,14 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-interface NewsArticle {
+export interface NewsArticle {
+    article_id: string;
     title: string;
-    link: string;
     description: string;
+    link: string;
     image_url: string | null;
-    source_id: string;
     pubDate: string;
-}
+    source_name: string;
+  }
 
 interface NewsState {
     data: NewsArticle[];

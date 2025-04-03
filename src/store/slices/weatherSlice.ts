@@ -1,29 +1,41 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-interface Weather {
+export interface Weather {
     id: number;
-    name: string; 
+    name: string;
     main: {
-      temp: number;
-      humidity: number;
+        temp: number;
+        feels_like: number;
+        humidity: number;
+        pressure: number;
     };
     weather: {
-      description: string;
-      icon: string;
+        main: string;
+        description: string;
+        icon: string;
     }[];
-  }
-  
-  interface WeatherState {
-    data: Weather[]; 
+    wind: {
+        speed: number;
+        gust?: number;
+    };
+    sys: {
+        country: string;
+        sunrise: number;
+        sunset: number;
+    };
+}
+
+interface WeatherState {
+    data: Weather[];
     status: string;
     error: string | null;
-  }
-  
-  const initialState: WeatherState = {
+}
+
+const initialState: WeatherState = {
     data: [],
     status: "idle",
     error: null,
-  };
+};
 
 export const fetchWeather = createAsyncThunk("weather/fetch", async () => {
     const cities = ["New York", "London", "Tokyo"]
