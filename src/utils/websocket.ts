@@ -8,7 +8,7 @@ export const createWebSocket = (onMessage: (data: CryptoPriceUpdate) => void): W
     const socket = new WebSocket(COINCAP_WS_URL);
 
     socket.onopen = () => {
-        console.log("WebSocket connected 🚀");
+        console.log("WebSocket connected");
     };
 
     socket.onmessage = (event: MessageEvent) => {
