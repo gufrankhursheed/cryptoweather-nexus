@@ -24,15 +24,6 @@ export default function Weather() {
         }
     }
 
-    if (status === "failed") {
-        return (
-            <div className="bg-gradient-to-r from-blue-800 to-gray-800 p-6 rounded-lg shadow-lg">
-                <h2 className="text-2xl font-bold mb-4">Weather</h2>
-                <p className="text-red-500">Failed to load data</p>
-            </div>
-        );
-    }
-
     return (
         <div className="bg-gradient-to-r from-blue-800 to-gray-800 p-6 rounded-lg shadow-lg">
             <h2 className="text-2xl font-bold mb-4">Weather</h2>
@@ -42,10 +33,10 @@ export default function Weather() {
             {status === "failed" && <p className="text-red-500">Failed to load data</p>}
             {data && data.map((city) => (
                 <Link key={city.id} href={`/weather/${encodeURIComponent(city.name)}`}>
-                    <div className="mb-4 flex items-center gap-4">
+                    <div className="mb-4 flex items-center gap-4 group">
                         {getWeatherIcon(city.weather?.[0]?.main)}
                         <div>
-                            <p className="text-lg font-semibold">{city.name}</p>
+                            <p className="text-lg font-semibold group-hover:underline">{city.name}</p>
                             <p className="text-sm text-gray-300">
                                 {city.main.temp}°C | Humidity: {city.main.humidity}% | Wind: {city.wind.speed} km/h
                             </p>

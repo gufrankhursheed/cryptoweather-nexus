@@ -7,15 +7,6 @@ import Spinner from "./Spinner";
 export default function News() {
     const { data, status } = useSelector((state: RootState) => state.news)
 
-    if (status === "failed") {
-        return (
-            <div className="bg-gradient-to-r from-blue-800 to-gray-800 p-6 rounded-lg shadow-lg">
-                <h2 className="text-2xl font-bold mb-4">Weather</h2>
-                <p className="text-red-500">Failed to load data</p>
-            </div>
-        );
-    }
-
     return (
         <div className="bg-gradient-to-r from-blue-800 to-gray-800 p-6 rounded-lg shadow-lg">
             <h2 className="text-2xl font-bold mb-4">Latest News</h2>

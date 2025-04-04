@@ -43,7 +43,7 @@ export const fetchWeather = createAsyncThunk("weather/fetch", async () => {
 
     const response = await Promise.all(
         cities.map(async (city) => {
-            const res = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}`)
+            const res = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}`);
             return res.json()
         })
     )

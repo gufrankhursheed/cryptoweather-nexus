@@ -1,11 +1,12 @@
 "use client";
 
-import { useSelector } from "react-redux";
-import { RootState } from "@/store/store";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "@/store/store";
 import { useParams } from "next/navigation";
 import { Sun, Cloud, CloudRain, Snowflake, Wind, Sunrise, Sunset, Thermometer, Droplets } from "lucide-react";
 import { useEffect, useState } from "react";
 import Spinner from "@/app/components/Spinner";
+import { fetchWeather } from "@/store/slices/weatherSlice";
 
 interface Weather {
     id: number;
@@ -38,15 +39,27 @@ export default function WeatherDetails() {
 
     const { data, status } = useSelector((state: RootState) => state.weather);
     const [weather, setWeather] = useState<Weather | null>(null);
+    const dispatch: AppDispatch = useDispatch();
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        if (city && data.length > 0) {
-            const foundCity = data.find((item) => item.name.toLowerCase() === city.toLowerCase());
-            setWeather(foundCity || null);
+        if (data.length === 0) {
+            dispatch(fetchWeather());
+        }
+    }, [dispatch, data]);
+
+    useEffect(() => {
+        if (city) {
+            setLoading(true); 
+            if (data.length > 0) {
+                const foundCity = data.find((item) => item.name.toLowerCase() === city.toLowerCase());
+                setWeather(foundCity || null);
+                setLoading(false); 
+            }
         }
     }, [city, data]);
 
-    if (status === "loading") {
+    if (status === "loading" || loading) {
         return (
             <div className="flex items-center justify-center w-screen h-screen">
                 <Spinner />
