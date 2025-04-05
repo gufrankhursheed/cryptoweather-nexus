@@ -147,4 +147,3 @@ const cryptoSlice = createSlice({
 })
 
 export default cryptoSlice.reducer
-

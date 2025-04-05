@@ -39,7 +39,7 @@ export default function CryptoDetail() {
 
     useEffect(() => {
         if (id) {
-            setLoading(true); 
+            setLoading(true);
             dispatch(fetchCryptoDetail(id as string));
             dispatch(fetchCryptoHistory(id as string));
         }

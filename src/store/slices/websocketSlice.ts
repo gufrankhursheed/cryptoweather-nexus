@@ -1,22 +1,35 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
-export interface CryptoPricesState {
-    prices: Record<string, number>;
+interface WebSocketState {
+  btcPrice: number | null;
+  ethPrice: number | null;
+  notifications: { type: string; message: string }[];
 }
 
-const initialState: CryptoPricesState = {
-    prices: {},
+const initialState: WebSocketState = {
+  btcPrice: null,
+  ethPrice: null,
+  notifications: [],
 };
 
 const websocketSlice = createSlice({
-    name: "websocket",
-    initialState,
-    reducers: {
-        updatePrices: (state, action: PayloadAction<Record<string, number>>) => {
-            state.prices = { ...state.prices, ...action.payload }
-        },
+  name: "websocket",
+  initialState,
+  reducers: {
+    updateBTCPrice: (state, action) => {
+      state.btcPrice = action.payload
     },
-})
+    updateETHPrice: (state, action) => {
+      state.ethPrice = action.payload
+    },
+    addNotification: (
+      state,
+      action
+    ) => {
+      state.notifications.push(action.payload);
+    },
+  },
+});
 
-export const { updatePrices } = websocketSlice.actions
-export default websocketSlice.reducer
+export const { updateBTCPrice, updateETHPrice, addNotification } = websocketSlice.actions;
+export default websocketSlice.reducer;
