@@ -1,36 +1,87 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# CryptoWeather Nexus
+
+**CryptoWeather Nexus** is a real-time web application that combines live cryptocurrency prices with simulated weather alerts. It showcases WebSocket integration, Redux state management, and toast-based user notifications — all built with **Next.js 13 App Router** and **TypeScript**.
+
+> Live Demo: https://cryptoweather-nexus-iota.vercel.app/
+
+---
+
+## Tech Stack
+
+- **Next.js 13 (App Router)**
+- **TypeScript**
+- **Redux Toolkit**
+- **WebSockets** (CoinCap API)
+- **React Hot Toast**
+- **Tailwind CSS** 
+
+---
+
+## Features
+
+- Live cryptocurrency price updates
+- Simulated weather alerts every 30 seconds
+- Global toast notifications (price alerts and weather updates)
+- Centralized state management via Redux Toolkit
+- Real-time data via WebSocket API
+
+---
 
 ## Getting Started
 
-First, run the development server:
+Follow the steps below to run the project locally:
+
+### 1. Clone the repository
 
 ```bash
+git clone https://github.com/gufrankhursheed/cryptoweather-nexus
+cd cryptoweather-nexus
+2. Install dependencies
+npm install
+3. Run the development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Open http://localhost:3000 in your browser to view the app.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+WebSocket Integration
+We use the CoinCap WebSocket API for live price updates:
+wss://ws.coincap.io/prices?assets=bitcoin,ethereum
+Each incoming message updates the Redux store and triggers a toast notification.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Toast Notifications
+Notifications are displayed globally using react-hot-toast. The app listens for changes to the notifications array in the Redux store and displays the latest update:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+BTC/ETH Price Updates
 
-## Learn More
+Simulated Weather Alerts (every 30s)
 
-To learn more about Next.js, take a look at the following resources:
+Design Decisions
+WebSocketProvider manages the connection lifecycle and dispatches updates.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Redux Toolkit offers clean, maintainable state management for price and notification state.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+ToastNotifications is a lightweight component that listens for new updates and triggers UI feedback.
 
-## Deploy on Vercel
+Modular Architecture separates concerns into store, components, and context.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Deployment
+The app is deployed publicly on Vercel:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+https://cryptoweather-nexus-iota.vercel.app/
+
+Author
+Md Gufran Khursheed
+gufranKhursheed7@gmail.com
+https://github.com/gufrankhursheed
+
+Feedback & Contributions
+Got suggestions or want to contribute? Feel free to:
+
+Open an Issue
+
+Submit a Pull Request
+
+© 2025 CryptoWeather Nexus — All rights reserved.
+
+---
+
+Let me know if you’d like this customized with your actual GitHub username, name, or email — or if you want a badge-filled version with GitHub shields
