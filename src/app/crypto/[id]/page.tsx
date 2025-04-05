@@ -8,6 +8,7 @@ import Spinner from "@/app/components/Spinner";
 import { AppDispatch, RootState } from "@/store/store";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCryptoDetail, fetchCryptoHistory } from "@/store/slices/cryptoSlice";
+import Image from "next/image";
 
 interface CryptoDetail {
     id: string;
@@ -64,7 +65,7 @@ export default function CryptoDetail() {
         <div className="min-h-screen bg-gray-900 p-6">
             <div className="max-w-3xl mx-auto bg-blue-800 text-white p-6 rounded-lg shadow-lg mt-5">
                 <div className="flex items-center gap-4">
-                    <img src={cryptoDetail.image.large} alt={cryptoDetail.name} className="w-12 h-12" />
+                    <Image width={200} height={200} src={cryptoDetail.image.large} alt={cryptoDetail.name} className="w-12 h-12" />
                     <div>
                         <h2 className="text-2xl font-bold">{cryptoDetail.name} ({cryptoDetail.symbol.toUpperCase()})</h2>
                         <p className="text-sm text-gray-400 flex items-center gap-1">

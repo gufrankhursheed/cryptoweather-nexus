@@ -17,7 +17,7 @@ export default function Dashboard() {
         dispatch(fetchWeather());
         dispatch(fetchCrypto());
         dispatch(fetchNews());
-    }, []);
+    }, [dispatch]);
 
     return (
         <div className="min-h-screen bg-gray-900 text-white p-6">

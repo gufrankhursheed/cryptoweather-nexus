@@ -4,6 +4,7 @@ import { RootState } from "@/store/store"
 import { useSelector } from "react-redux"
 import Spinner from "./Spinner";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Crypto() {
     const { data, status } = useSelector((state: RootState) => state.crypto)
@@ -20,7 +21,7 @@ export default function Crypto() {
                 <Link key={coin.id} href={`/crypto/${coin.id}`}>
                     <div className="flex items-center justify-between border-b border-gray-600 py-3 group">
                         <div className="flex items-center gap-4">
-                            <img src={coin.image} alt={coin.name} className="w-8 h-8 rounded-full" />
+                            <Image width={200} height={200} src={coin.image} alt={coin.name} className="w-8 h-8 rounded-full" />
                             <p className="text-lg font-medium group-hover:underline">
                                 {coin.name} ({coin.symbol.toUpperCase()})
                             </p>
